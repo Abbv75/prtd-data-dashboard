@@ -5,8 +5,12 @@ import Header from '../components/Header';
 import PlainNavbar from '../components/PlainNavbar';
 import NavbarCollapsed from '../components/NavbarCollapsed';
 import { Container, Typography } from '@mui/joy';
+import { green } from '@mui/material/colors';
 
 const Router = () => {
+
+    // get the page path from react router dom
+    const pathname = window.location.pathname;
 
     return (
         <BrowserRouter >
@@ -19,8 +23,8 @@ const Router = () => {
                     <NavbarCollapsed />
             }
 
-            <Container sx={{py : 5}}>
-                <Typography></Typography>
+            <Container sx={{ py: 5 }}>
+                <Typography level='h2' textColor={green[800]}>{PAGE_PATH.find(x => x.path == pathname)?.title || "PRTD Mali"}</Typography>
 
                 <Routes>
                     <Route path='/*' Component={Accueil} />

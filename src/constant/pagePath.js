@@ -3,7 +3,7 @@ import Accueil from "../pages/Accueil";
 export default [
     {
         path: "/",
-        title: "Techniques et technologie",
+        title: "Gestion des techniques et technologies",
         component: Accueil
     },
 ]
