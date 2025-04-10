@@ -1,5 +1,5 @@
 import { Button, Card, Divider, Drawer, Stack, Typography } from "@mui/joy"
-import { HEADER_LINKS } from "../constant"
+import { PAGE_PATH } from "../constant"
 import { Link } from "react-router-dom"
 import { green, red } from "@mui/material/colors"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -67,7 +67,7 @@ const NavbarCollapsed = () => {
                 </Button>
 
                 {
-                    HEADER_LINKS.map((value, index) => (
+                    PAGE_PATH.map((value, index) => (
                         <>
                             <Link
                                 to={value.path}
@@ -75,11 +75,11 @@ const NavbarCollapsed = () => {
                                 onClick={() => setisOpen(false)}
                             >
                                 <Typography level="h4" textColor={"white"} >
-                                    {value.text}
+                                    {value.title}
                                 </Typography>
                             </Link>
                             {
-                                index === HEADER_LINKS.length - 1 ? null : <Divider sx={{ width: "100%", bgcolor: "white" }} />
+                                index === PAGE_PATH.length - 1 ? null : <Divider sx={{ width: "100%", bgcolor: "white" }} />
                             }
                         </>
                     ))

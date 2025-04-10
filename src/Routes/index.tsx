@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PAGE_PAGE } from '../constant';
+import { PAGE_PATH } from '../constant';
 import Accueil from '../pages/Accueil';
 import Header from '../components/Header';
 import PlainNavbar from '../components/PlainNavbar';
-import Footer from '../components/Footer';
 import NavbarCollapsed from '../components/NavbarCollapsed';
+import { Container, Typography } from '@mui/joy';
 
 const Router = () => {
 
@@ -19,15 +19,18 @@ const Router = () => {
                     <NavbarCollapsed />
             }
 
-            <Routes>
-                <Route path='/*' Component={Accueil} />
-                {
-                    PAGE_PAGE.map((value, index) => (
-                        <Route path={value.path} Component={value.component} key={index} />
-                    ))
-                }
+            <Container sx={{py : 5}}>
+                <Typography></Typography>
 
-            </Routes>
+                <Routes>
+                    <Route path='/*' Component={Accueil} />
+                    {
+                        PAGE_PATH.map((value, index) => (
+                            <Route path={value.path} Component={value.component} key={index} />
+                        ))
+                    }
+                </Routes>
+            </Container>
         </BrowserRouter>
     )
 }

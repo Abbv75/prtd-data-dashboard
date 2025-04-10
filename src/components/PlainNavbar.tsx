@@ -1,7 +1,7 @@
-import { Card, Stack, Typography } from "@mui/joy"
-import { HEADER_LINKS } from "../constant"
-import { Link } from "react-router-dom"
-import { green } from "@mui/material/colors"
+import { Card, Stack, Typography } from "@mui/joy";
+import { Link } from "react-router-dom";
+import { green } from "@mui/material/colors";
+import { PAGE_PATH } from '../constant';
 
 const PlainNavbar = () => {
     return (
@@ -18,10 +18,10 @@ const PlainNavbar = () => {
                 gap={3}
             >
                 {
-                    HEADER_LINKS.map((value, index) => (
+                    PAGE_PATH.map((value, index) => (
                         <Link to={value.path} key={index}>
                             <Typography level="h4" textColor={"white"} >
-                                {value.text}
+                                {value.title}
                             </Typography>
                         </Link>
                     ))

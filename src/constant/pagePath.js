@@ -2,7 +2,8 @@ import Accueil from "../pages/Accueil";
 
 export default [
     {
-        path: "accueil",
+        path: "/",
+        title: "Techniques et technologie",
         component: Accueil
     },
 ]
