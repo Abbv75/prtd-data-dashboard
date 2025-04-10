@@ -28,8 +28,6 @@ const Router = () => {
                 }
 
             </Routes>
-
-            <Footer />
         </BrowserRouter>
     )
 }
