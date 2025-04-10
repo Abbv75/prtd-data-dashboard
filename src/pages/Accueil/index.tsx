@@ -1,7 +1,30 @@
 import { Stack, Tab, tabClasses, TabList, Tabs } from '@mui/joy'
-import { green, orange, red } from '@mui/material/colors'
+import { green, orange } from '@mui/material/colors'
+import { useEffect, useState } from 'react'
+import { TECHNIQUE_CATEGORIE_T } from '../../types';
+import { getTechniquesCategorie } from '../../functions/techniquesCategorie/getTechniquesCategorie';
+import { toast } from 'react-toastify';
 
-const index = () => {
+const Accueil = () => {
+    const [categorie, setcategorie] = useState([] as TECHNIQUE_CATEGORIE_T[]);
+
+    const loadTechniqueCategorie = async () => {
+        const res = await getTechniquesCategorie();
+
+        if (typeof res === "string") {
+            toast.error(res);
+            return;
+        }
+
+        setcategorie(res);
+    }
+
+    useEffect(
+        () => {
+            loadTechniqueCategorie();
+        }, []
+    )
+
     return (
         <Stack>
             <Tabs>
@@ -18,13 +41,15 @@ const index = () => {
                         },
                     }}
                 >
-                    <Tab disableIndicator value="1">One</Tab>
-                    <Tab disableIndicator value="2">One</Tab>
-                    <Tab disableIndicator value="3">One</Tab>
+                    {
+                        categorie.map((value, index) => (
+                            <Tab key={index} disableIndicator value={value.idTechniquesCategorie}>{value.nomTechniquesCategorie}</Tab>
+                        ))
+                    }
                 </TabList>
             </Tabs>
         </Stack>
     )
 }
 
-export default index
+export default Accueil

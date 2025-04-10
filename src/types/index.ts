@@ -5,4 +5,16 @@ export type LOADING_STATE_T = "En cours de chargement."
     | "Chargement échoué."
     | "Chargememnt reussi"
     | "En attente"
-    | null; 
+    | null;
+
+export interface RESPONSE_T {
+    message: string;
+    code: number;
+    data: any;
+}
+
+export interface TECHNIQUE_CATEGORIE_T {
+    idTechniquesCategorie: number;
+    nomTechniquesCategorie: string;
+    descriptionTechniquesCategorie?: string;
+}
