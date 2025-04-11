@@ -18,3 +18,11 @@ export interface TECHNIQUE_CATEGORIE_T {
     nomTechniquesCategorie: string;
     descriptionTechniquesCategorie?: string;
 }
+
+export interface TECHNIQUE_T {
+    idTechnique: number;
+    titre: string;
+    content: string;
+    colloneIndex?: number;
+    id_techniquesCategorie: number;
+}
