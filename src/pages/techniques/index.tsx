@@ -5,7 +5,7 @@ import { TECHNIQUE_CATEGORIE_T } from '../../types';
 import { getTechniquesCategorie } from '../../functions/techniquesCategorie/getTechniquesCategorie';
 import { toast } from 'react-toastify';
 
-const Accueil = () => {
+const Techniques = () => {
     const [categorie, setcategorie] = useState([] as TECHNIQUE_CATEGORIE_T[]);
 
     const loadTechniqueCategorie = async () => {
@@ -52,4 +52,4 @@ const Accueil = () => {
     )
 }
 
-export default Accueil
+export default Techniques

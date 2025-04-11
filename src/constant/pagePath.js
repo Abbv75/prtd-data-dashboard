@@ -1,9 +1,9 @@
-import Accueil from "../pages/Accueil";
+import Techniques from "../pages/techniques";
 
 export default [
     {
         path: "/",
         title: "Gestion des techniques et technologies",
-        component: Accueil
+        component: Techniques
     },
 ]
