@@ -10,12 +10,14 @@ import { Collapse, TableBody, TableCell, TableContainer, TableHead, TableRow } f
 import { getTechnique } from '../../functions/technique/getTechnique';
 import CategorieForm from './CategorieForm';
 import { TechniqueContext } from '../../providers/TechniqueContext';
+import TechniqueForm from './TechniqueForm';
 
 const Techniques = () => {
     const [categorie, setcategorie] = useState([] as TECHNIQUE_CATEGORIE_T[]);
     const [techniqueData, settechniqueData] = useState([] as TECHNIQUE_T[]);
     const [showAddCategorie, setshowAddCategorie] = useState(false);
     const [showCategorieForm, setshowCategorieForm] = useState(false);
+    const [showTechniqueForm, setshowTechniqueForm] = useState(false);
 
     const loadTechniqueCategorie = async () => {
         const res = await getTechniquesCategorie();
@@ -46,6 +48,11 @@ const Techniques = () => {
                     open={showCategorieForm}
                     setOpen={setshowCategorieForm}
                     loadTechniqueCategorie={loadTechniqueCategorie}
+                />
+
+                <TechniqueForm
+                    open={showTechniqueForm}
+                    setOpen={setshowTechniqueForm}
                 />
 
                 <Tabs>
@@ -99,6 +106,7 @@ const Techniques = () => {
                                     <Button
                                         sx={{ mb: 1 }}
                                         endDecorator={<FontAwesomeIcon icon={faPlusCircle} />}
+                                        onClick={() => setshowTechniqueForm(true)}
                                     >Ajouter  une techniques ou categorie</Button>
 
                                     <Table>
