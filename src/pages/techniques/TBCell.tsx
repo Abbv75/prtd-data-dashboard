@@ -42,10 +42,6 @@ const TBCell = (
         }
     }
 
-    const handleDelete = async () => {
-
-    }
-
     return (
         <TableCell>
             <Collapse in={!editMode} unmountOnExit>

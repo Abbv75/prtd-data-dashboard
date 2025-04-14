@@ -13,6 +13,7 @@ import { TechniqueContext } from '../../providers/TechniqueContext';
 import TechniqueForm from './TechniqueForm';
 import TabTitleItem from './TabTitleItem';
 import TBCell from './TBCell';
+import THCell from './THCell';
 
 const Techniques = () => {
     const [categorie, setcategorie] = useState([] as TECHNIQUE_CATEGORIE_T[]);
@@ -114,9 +115,7 @@ const Techniques = () => {
                                             <TableRow>
                                                 {
                                                     techniqueData.filter(x => x.id_techniquesCategorie === value.idTechniquesCategorie)
-                                                        .map((x, index) => (
-                                                            <TableCell key={index}>{x.titre}</TableCell>
-                                                        ))
+                                                        .map((x, index) => (<THCell key={index} value={x} />))
                                                 }
                                             </TableRow>
                                         </TableHead>
