@@ -18,6 +18,7 @@ const Techniques = () => {
     const [showAddCategorie, setshowAddCategorie] = useState(false);
     const [showCategorieForm, setshowCategorieForm] = useState(false);
     const [showTechniqueForm, setshowTechniqueForm] = useState(false);
+    const [categorieId, setcategorieId] = useState(categorie[0]?.idTechniquesCategorie || null);
 
     const loadTechniqueCategorie = async () => {
         const res = await getTechniquesCategorie();
@@ -41,6 +42,7 @@ const Techniques = () => {
     return (
         <TechniqueContext.Provider
             value={{
+                categorieId,
             }}
         >
             <Stack>
@@ -53,6 +55,8 @@ const Techniques = () => {
                 <TechniqueForm
                     open={showTechniqueForm}
                     setOpen={setshowTechniqueForm}
+                    categorieId={categorieId}
+                    loadTechniqueCategorie={loadTechniqueCategorie}
                 />
 
                 <Tabs>
@@ -78,6 +82,7 @@ const Techniques = () => {
                                     key={index}
                                     disableIndicator
                                     value={value.idTechniquesCategorie}
+                                    onMouseDown={() => setcategorieId(value.idTechniquesCategorie)}
                                 >{value.nomTechniquesCategorie}</Tab>
                             ))
                         }
