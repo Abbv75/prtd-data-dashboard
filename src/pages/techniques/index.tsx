@@ -115,7 +115,7 @@ const Techniques = () => {
                                             <TableRow>
                                                 {
                                                     techniqueData.filter(x => x.id_techniquesCategorie === value.idTechniquesCategorie)
-                                                        .map((x, index) => (<THCell key={index} value={x} />))
+                                                        .map((x, index) => (<THCell value={x} />))
                                                 }
                                             </TableRow>
                                         </TableHead>
@@ -124,7 +124,7 @@ const Techniques = () => {
                                             <TableRow>
                                                 {
                                                     techniqueData.filter(x => x.id_techniquesCategorie === value.idTechniquesCategorie)
-                                                        .map((x, index) => (<TBCell key={index} value={x} />))
+                                                        .map((x, index) => (<TBCell value={x} />))
                                                 }
                                             </TableRow>
                                         </TableBody>

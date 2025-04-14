@@ -7,6 +7,7 @@ import { useContext, useState } from 'react'
 import { TechniqueContext } from '../../providers/TechniqueContext'
 import { editTechniqueTitle } from '../../functions/technique/editTechniqueTitle'
 import { toast } from 'react-toastify'
+import { deleteTechnique } from '../../functions/technique/deleteTechnique'
 
 const THCell = (
     {
@@ -18,11 +19,16 @@ const THCell = (
     const { loadTechniqueCategorie } = useContext(TechniqueContext);
 
     const [editMode, seteditMode] = useState(false);
-    const [newValue, setNewValue] = useState(value.content);
+    const [newValue, setNewValue] = useState(value.titre);
     const [loadingState, setloadingState] = useState(null as LOADING_STATE_T);
 
     const handleClickAway = async () => {
         try {
+            if (newValue == value.titre) {
+                seteditMode(false);
+                return;
+            }
+
             setloadingState("En cours de chargement.");
 
             const res = await editTechniqueTitle(value.idTechnique, newValue);
@@ -46,7 +52,11 @@ const THCell = (
 
     const handleDelete = async () => {
         try {
-            const res = await editTechniqueTitle(value.idTechnique, newValue);
+            if (!window.confirm("Etes voous sur de vouloir les supprimer ?")) {
+                return;
+            }
+
+            const res = await deleteTechnique(value.idTechnique);
 
             if (typeof res === "string" || !res) {
                 toast.error(res);
