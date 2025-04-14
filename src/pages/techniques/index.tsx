@@ -12,6 +12,7 @@ import CategorieForm from './CategorieForm';
 import { TechniqueContext } from '../../providers/TechniqueContext';
 import TechniqueForm from './TechniqueForm';
 import TabTitleItem from './TabTitleItem';
+import TBCell from './TBCell';
 
 const Techniques = () => {
     const [categorie, setcategorie] = useState([] as TECHNIQUE_CATEGORIE_T[]);
@@ -106,7 +107,7 @@ const Techniques = () => {
                                         sx={{ mb: 1 }}
                                         endDecorator={<FontAwesomeIcon icon={faPlusCircle} />}
                                         onClick={() => setshowTechniqueForm(true)}
-                                    >Ajouter  une techniques ou categorie</Button>
+                                    >Ajouter  une technique</Button>
 
                                     <Table>
                                         <TableHead>
@@ -124,9 +125,7 @@ const Techniques = () => {
                                             <TableRow>
                                                 {
                                                     techniqueData.filter(x => x.id_techniquesCategorie === value.idTechniquesCategorie)
-                                                        .map((x, index) => (
-                                                            <TableCell key={index}>{x.content}</TableCell>
-                                                        ))
+                                                        .map((x, index) => (<TBCell key={index} value={x} />))
                                                 }
                                             </TableRow>
                                         </TableBody>

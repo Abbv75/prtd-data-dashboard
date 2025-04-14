@@ -96,7 +96,7 @@ const TabTitleItem = (
                                 onChange={({ target }) => setnomEdit(target.value)}
                                 endDecorator={
                                     <ButtonGroup color='primary'>
-                                        <Button onClick={() => handleFormSubmit()} >
+                                        <Button onClick={() => handleFormSubmit()} disabled={!nomEdit || nomEdit == ""} >
                                             <FontAwesomeIcon icon={faCheck} />
                                         </Button>
                                         <Button color='danger' onClick={() => seteditMode(false)} >
