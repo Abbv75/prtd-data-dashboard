@@ -89,7 +89,6 @@ const Techniques = () => {
                                 onClick={() => setshowCategorieForm(true)}
                             >Ajouter</Button>
                         </Collapse>
-
                     </TabList>
 
                     {
