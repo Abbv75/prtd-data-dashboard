@@ -14,7 +14,7 @@ export const addTechniquesCategorie = async (
             }
         );
 
-        return data.code === 200 ? true : false;
+        return data.code === 200;
     } catch (error) {
         console.error("Une erreur est survenue. lors de l'ajout :", error);
 

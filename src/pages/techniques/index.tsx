@@ -1,4 +1,4 @@
-import { Button, Stack, Tab, tabClasses, Table, TabList, TabPanel, Tabs } from '@mui/joy';
+import { Button, Stack, tabClasses, Table, TabList, TabPanel, Tabs } from '@mui/joy';
 import { green, orange } from '@mui/material/colors';
 import { useEffect, useState } from 'react';
 import { TECHNIQUE_CATEGORIE_T, TECHNIQUE_T } from '../../types';
@@ -11,6 +11,7 @@ import { getTechnique } from '../../functions/technique/getTechnique';
 import CategorieForm from './CategorieForm';
 import { TechniqueContext } from '../../providers/TechniqueContext';
 import TechniqueForm from './TechniqueForm';
+import TabTitleItem from './TabTitleItem';
 
 const Techniques = () => {
     const [categorie, setcategorie] = useState([] as TECHNIQUE_CATEGORIE_T[]);
@@ -43,20 +44,19 @@ const Techniques = () => {
         <TechniqueContext.Provider
             value={{
                 categorieId,
+                setcategorieId,
+                loadTechniqueCategorie: loadTechniqueCategorie
             }}
         >
             <Stack>
                 <CategorieForm
                     open={showCategorieForm}
                     setOpen={setshowCategorieForm}
-                    loadTechniqueCategorie={loadTechniqueCategorie}
                 />
 
                 <TechniqueForm
                     open={showTechniqueForm}
                     setOpen={setshowTechniqueForm}
-                    categorieId={categorieId}
-                    loadTechniqueCategorie={loadTechniqueCategorie}
                 />
 
                 <Tabs>
@@ -78,19 +78,14 @@ const Techniques = () => {
                     >
                         {
                             categorie.map((value, index) => (
-                                <Tab
-                                    key={index}
-                                    disableIndicator
-                                    value={value.idTechniquesCategorie}
-                                    onMouseDown={() => setcategorieId(value.idTechniquesCategorie)}
-                                >{value.nomTechniquesCategorie}</Tab>
+                                <TabTitleItem id={value.idTechniquesCategorie} nom={value.nomTechniquesCategorie} key={index} />
                             ))
                         }
 
                         <Collapse in={showAddCategorie} orientation='horizontal' unmountOnExit>
                             <Button
                                 endDecorator={<FontAwesomeIcon icon={faPlusCircle} />}
-                                sx={{ borderRadius: 0 }}
+                                sx={{ borderRadius: 0, height: "100%" }}
                                 onClick={() => setshowCategorieForm(true)}
                             >Ajouter</Button>
                         </Collapse>

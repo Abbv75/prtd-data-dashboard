@@ -1,20 +1,21 @@
 import { Button, FormControl, FormLabel, Input, Modal, ModalDialog, Stack, Textarea, Typography } from '@mui/joy'
 import { LOADING_STATE_T, USE_STATE_T } from '../../types'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { toast } from 'react-toastify'
 import { addTechniquesCategorie } from '../../functions/techniquesCategorie/addTechniquesCategorie'
+import { TechniqueContext } from '../../providers/TechniqueContext'
 
 const CategorieForm = (
     {
         open = false,
         setOpen,
-        loadTechniqueCategorie
     }: {
         open: boolean,
         setOpen: USE_STATE_T,
-        loadTechniqueCategorie : any
     }
 ) => {
+    const { loadTechniqueCategorie } = useContext(TechniqueContext);
+
     const [data, setData] = useState({
         name: undefined as undefined | string,
         description: undefined as undefined | string
