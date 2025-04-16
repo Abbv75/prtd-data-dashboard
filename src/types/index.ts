@@ -26,3 +26,11 @@ export interface TECHNIQUE_T {
     colloneIndex?: number;
     id_techniquesCategorie: number;
 }
+
+export interface BONNES_PRATIQUES_T {
+    idBonnesPratiques: number;
+    intite: string;
+    description: string;
+    image?: string;
+    id_filiere: number;
+}
