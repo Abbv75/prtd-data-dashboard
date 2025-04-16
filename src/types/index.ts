@@ -29,7 +29,7 @@ export interface TECHNIQUE_T {
 
 export interface BONNES_PRATIQUES_T {
     idBonnesPratiques: number;
-    intite: string;
+    intitule: string;
     description: string;
     image?: string;
     id_filiere: number;

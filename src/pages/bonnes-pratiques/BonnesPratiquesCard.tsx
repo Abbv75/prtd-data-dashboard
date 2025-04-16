@@ -1,14 +1,24 @@
 import { CardMedia } from '@mui/material'
-import { CardContent, Typography, Card, Button } from '@mui/joy'
+import { CardContent, Typography, Card } from '@mui/joy'
 import { green } from '@mui/material/colors'
-import { IMAGES } from '../../constant'
+import { BONNES_PRATIQUES_IMAGES, IMAGES } from '../../constant'
 
-const BonnesPratiquesCard = () => {
+const BonnesPratiquesCard = (
+  {
+    titre,
+    description,
+    image
+  }: {
+    titre: string,
+    description: string,
+    image?: string
+  }
+) => {
   return (
     <Card sx={{ borderRadius: 0, p: 0 }}>
       <CardMedia
         component="img"
-        src={IMAGES.manioc}
+        src={`${BONNES_PRATIQUES_IMAGES}/${image}`}
         sx={{ height: 200 }}
       />
       <CardContent sx={{ position: 'absolute', alignSelf: "flex-end", p: 2 }}>
@@ -22,10 +32,8 @@ const BonnesPratiquesCard = () => {
         </Typography>
       </CardContent>
       <CardContent sx={{ px: 2, pb: 2, gap: 2 }}>
-        <Typography level='h4'>Comment produire le composant à base de la paille de riz en millieu aerien ?</Typography>
-        <Typography textColor={'gray'}>
-          Fiche technique élaborée par la CNRA portant sur la production d'engrais sous forme de compost à partir de la paille de riz.
-        </Typography>
+        <Typography level='h4'>{titre}</Typography>
+        <Typography textColor={'gray'}>{description}</Typography>
       </CardContent>
     </Card>
   )

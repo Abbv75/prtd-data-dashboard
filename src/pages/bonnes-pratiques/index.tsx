@@ -1,12 +1,33 @@
 import { faPlusCircle, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Button, Card, Grid, Input, Stack } from "@mui/joy"
+import { Button, Card, Grid, Input, LinearProgress, Stack } from "@mui/joy"
 import BonnesPratiquesCard from "./BonnesPratiquesCard"
 import AddForm from "./AddForm"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { BONNES_PRATIQUES_T, LOADING_STATE_T } from "../../types"
+import { getAllBonnesPratiques } from "../../functions/bonnesPratiques/getAllBonnesPratiques"
+import { toast } from "react-toastify"
 
 const BonnesPratiques = () => {
     const [isFormOpen, setisFormOpen] = useState(false);
+    const [data, setdata] = useState([] as BONNES_PRATIQUES_T[]);
+    const [laodingState, setlaodingState] = useState(null as LOADING_STATE_T);
+
+    const laodData = async () => {
+        try {
+            setlaodingState("En cours de chargement.");
+            const res = await getAllBonnesPratiques();
+
+            typeof res !== "string" && setdata(res);
+            setlaodingState(null);
+        } catch (error) {
+            setlaodingState(null);
+            toast.error("Une erreur est survenue lors de la récupération des bonnes pratiques.")
+        }
+    }
+    useEffect(() => {
+        laodData();
+    }, [])
 
     return (
         <Grid
@@ -32,18 +53,30 @@ const BonnesPratiques = () => {
                 </Card>
             </Grid>
 
-            <Grid
-                xs={12}
-                sm={4}
-            >
-                <BonnesPratiquesCard />
-            </Grid>
-            <Grid
-                xs={12}
-                sm={4}
-            >
-                <BonnesPratiquesCard />
-            </Grid>
+            {
+                laodingState === "En cours de chargement."
+                    ? (
+                        <Grid
+                            xs={12}
+                        >
+                            <LinearProgress />
+                        </Grid>
+                    )
+                    : (
+                        data.map((value, index) => (
+                            <Grid
+                                xs={12}
+                                sm={4}
+                            >
+                                <BonnesPratiquesCard
+                                    titre={value.intitule}
+                                    description={value.description}
+                                    image={value.image}
+                                />
+                            </Grid>
+                        ))
+                    )
+            }
 
         </Grid>
     )
