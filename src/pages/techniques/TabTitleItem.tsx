@@ -109,17 +109,17 @@ const TabTitleItem = (
                         : (
                             <Typography
                                 endDecorator={
-                                    <Tooltip title="Supprimer">
-                                        <Collapse in={showOption} orientation='horizontal' unmountOnExit >
-                                            <Stack
-                                                direction={"row"}
-                                                gap={1}
-                                                sx={{
-                                                    "& > div:hover": {
-                                                        transform: `scale(1.1)`
-                                                    }
-                                                }}
-                                            >
+                                    <Collapse in={showOption} orientation='horizontal' unmountOnExit >
+                                        <Stack
+                                            direction={"row"}
+                                            gap={1}
+                                            sx={{
+                                                "& > div:hover": {
+                                                    transform: `scale(1.1)`
+                                                }
+                                            }}
+                                        >
+                                            <Tooltip title="Modifier">
                                                 <Avatar
                                                     color='primary'
                                                     size='sm'
@@ -127,6 +127,9 @@ const TabTitleItem = (
                                                 >
                                                     <FontAwesomeIcon icon={faFeather} />
                                                 </Avatar>
+                                            </Tooltip>
+
+                                            <Tooltip title="Supprimer">
                                                 <Avatar
                                                     color='danger'
                                                     size='sm'
@@ -134,9 +137,9 @@ const TabTitleItem = (
                                                 >
                                                     <FontAwesomeIcon icon={faTrashAlt} />
                                                 </Avatar>
-                                            </Stack>
-                                        </Collapse>
-                                    </Tooltip>
+                                            </Tooltip>
+                                        </Stack>
+                                    </Collapse>
                                 }
                             >
                                 {nom}
