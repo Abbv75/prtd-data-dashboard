@@ -66,7 +66,8 @@ const BonnesPratiques = () => {
                         data.map((value, index) => (
                             <Grid
                                 xs={12}
-                                sm={4}
+                                sm={6}
+                                md={3}
                             >
                                 <BonnesPratiquesCard
                                     titre={value.intitule}

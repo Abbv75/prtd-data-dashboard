@@ -24,7 +24,7 @@ const Router = () => {
             }
 
             <Container sx={{ py: 5 }}>
-                <Typography level='h2' mb={3} textColor={green[800]}>{PAGE_PATH.find(x => x.path == pathname)?.title || "PRTD Mali"}</Typography>
+                <Typography level='h2' mb={3} textColor={green[800]}>{PAGE_PATH.find(x => x.path == pathname)?.title}</Typography>
 
                 <Routes>
                     <Route path='/*' Component={Accueil} />
