@@ -2,20 +2,51 @@ import { CardMedia, Collapse } from '@mui/material'
 import { CardContent, Typography, Card, ButtonGroup, Button } from '@mui/joy'
 import { green } from '@mui/material/colors'
 import { BONNES_PRATIQUES_IMAGES } from '../../constant'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { deleteBonnePratique } from '../../functions/bonnesPratiques/deleteBonnePratique'
+import { toast } from 'react-toastify'
+import { BonnesPratiquesContext } from '../../providers/BonnesPratiquesContext'
+import { LOADING_STATE_T } from '../../types'
 
 const BonnesPratiquesCard = (
   {
     titre,
     description,
-    image
+    image,
+    id
   }: {
     titre: string,
     description: string,
-    image?: string
+    image?: string,
+    id: number
   }
 ) => {
+  const { laodData } = useContext(BonnesPratiquesContext);
+
   const [showEditZone, setshowEditZone] = useState(false);
+  const [loadingState, setloadingState] = useState(null as LOADING_STATE_T);;
+
+  const handleDelete = async () => {
+    try {
+      if (!window.confirm("Êtes-vous sûr de vouloir supprimer cette bonne pratique ?")) return;
+
+      setloadingState("En cours de chargement.");
+
+      const res = await deleteBonnePratique(id);
+      if (typeof res === "string" || !res) {
+        toast.error("Une erreur est survenue lors de la suppression.");
+        setloadingState(null);
+        return;
+      }
+
+      toast.success("Suppression réussie.");
+      laodData();
+      setloadingState(null);
+    } catch (error) {
+      toast.error("Une erreur est survenue lors de la suppression.");
+      setloadingState(null);
+    }
+  }
 
   return (
     <Card
@@ -47,7 +78,7 @@ const BonnesPratiquesCard = (
         <Typography textColor={'gray'}>{description}</Typography>
       </CardContent>
 
-      <CardContent sx={{}} >
+      <CardContent>
         <Collapse in={showEditZone} unmountOnExit>
           <ButtonGroup
             sx={{
@@ -55,7 +86,12 @@ const BonnesPratiquesCard = (
             }}
             variant='soft'
           >
-            <Button fullWidth color="danger">Supprimer</Button>
+            <Button
+              fullWidth
+              color="danger"
+              loading={loadingState === "En cours de chargement."}
+              onClick={handleDelete}
+            >Supprimer</Button>
             <Button fullWidth color="neutral">Modifier</Button>
           </ButtonGroup>
         </Collapse>
