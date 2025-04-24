@@ -1,7 +1,11 @@
 import { CardMedia } from '@mui/material'
-import { CardContent, Typography, Card, Button } from '@mui/joy'
+import { CardContent, Typography, Card, Button, ButtonGroup } from '@mui/joy'
 import { green } from '@mui/material/colors'
-import { FICHES_PROJETS_T } from '../../types'
+import { FICHES_PROJETS_T, LOADING_STATE_T } from '../../types'
+import { useContext, useState } from 'react'
+import { deleteFichesProjets } from '../../functions/fichesProjets/deleteFichesProjets'
+import { toast } from 'react-toastify'
+import { FichesProjetsContext } from '../../providers/FichesProjetsContext'
 
 const FichesProjetsCard = (
     {
@@ -10,6 +14,32 @@ const FichesProjetsCard = (
         value: FICHES_PROJETS_T
     }
 ) => {
+    const { laodData } = useContext(FichesProjetsContext);
+
+    const [loadingState, setloadingState] = useState(null as LOADING_STATE_T);;
+
+    const handleDelete = async () => {
+        try {
+            if (!window.confirm("Êtes-vous sûr de vouloir supprimer cette fiche de projet ?")) return;
+
+            setloadingState("En cours de chargement.");
+
+            const res = await deleteFichesProjets(value.idFichesProjets);
+            if (typeof res === "string" || !res) {
+                toast.error("Une erreur est survenue lors de la suppression.");
+                setloadingState(null);
+                return;
+            }
+
+            toast.success("Suppression réussie.");
+            laodData();
+            setloadingState(null);
+        } catch (error) {
+            toast.error("Une erreur est survenue lors de la suppression.");
+            setloadingState(null);
+        }
+    }
+
     return (
         <Card
             sx={{
@@ -21,7 +51,7 @@ const FichesProjetsCard = (
         >
             <CardMedia
                 component="img"
-                // src={IMAGES.image1}
+                src={`${process.env.REACT_APP_IMG_URL}/fiches-projets/${value.image}`}
                 sx={{
                     height: 200,
                 }}
@@ -35,18 +65,41 @@ const FichesProjetsCard = (
                 }}
             >
                 <Typography level='h4' textColor={"white"} >
-                    Projet d'implantation d'une unité de transformation du riz dans la zone du projet 2PAI-Belier
+                    {value.intitule}
                 </Typography>
-                <Typography textColor={'gray'}>
-                    Fiche technique élaborée par la CNRA portant sur la production d'engrais sous forme de compost à partir de la paille de riz.
+                <Typography textColor={'white'}>
+                    {value.description}
                 </Typography>
-                <Button
+
+                <ButtonGroup
                     sx={{
                         borderRadius: 0,
-                        width: "fit-content"
+                        "> *:is(button, a)": {
+                            color: "white",
+                        }
                     }}
                     color='warning'
-                >Voir la fiche</Button>
+                >
+                    <Button
+                        component="a"
+                        target='_blank'
+                        fullWidth
+                        href={`${process.env.REACT_APP_PDF_URL}/fiches-projets/${value.fichier}`}
+                    >Telecharger</Button>
+
+                    <Button
+                        component="a"
+                        target='_blank'
+                        href={`${process.env.REACT_APP_PDF_URL}/fiches-projets/${value.fichier}`}
+                    >Modifier</Button>
+
+                    <Button
+                        color="danger"
+                        loading={loadingState === "En cours de chargement."}
+                        onClick={handleDelete}
+                    >Supprimer</Button>
+
+                </ButtonGroup>
             </CardContent>
 
         </Card>

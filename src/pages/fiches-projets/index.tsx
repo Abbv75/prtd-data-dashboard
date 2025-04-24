@@ -76,7 +76,7 @@ const FichesProjets = () => {
                                 <Grid
                                     xs={12}
                                     sm={6}
-                                    md={3}
+                                    md={4}
                                     key={index}
                                 >
                                     <FichesProjetsCard value={value} />
