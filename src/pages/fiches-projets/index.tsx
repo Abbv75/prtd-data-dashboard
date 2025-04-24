@@ -1,15 +1,13 @@
 import { faPlusCircle, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Button, Card, Grid, Input, LinearProgress, Stack } from "@mui/joy"
-import BonnesPratiquesCard from "./BonnesPratiquesCard"
+import { Button, Card, Grid, Input, LinearProgress } from "@mui/joy"
 import AddForm from "./AddForm"
 import { useEffect, useState } from "react"
-import { BONNES_PRATIQUES_T, FICHES_PROJETS_T, LOADING_STATE_T } from "../../types"
-import { getAllBonnesPratiques } from "../../functions/bonnesPratiques/getAllBonnesPratiques"
+import { FICHES_PROJETS_T, LOADING_STATE_T } from "../../types"
 import { toast } from "react-toastify"
-import { BonnesPratiquesContext } from "../../providers/BonnesPratiquesContext"
 import { getAllFichesProjets } from "../../functions/fichesProjets/getAllFichesProjets"
 import FichesProjetsCard from "./FichesProjetsCard"
+import { FichesProjetsContext } from "../../providers/FichesProjetsContext"
 
 const FichesProjets = () => {
     const [isFormOpen, setisFormOpen] = useState(false);
@@ -36,7 +34,7 @@ const FichesProjets = () => {
     }, [])
 
     return (
-        <BonnesPratiquesContext.Provider
+        <FichesProjetsContext.Provider
             value={{
                 laodData
             }}
@@ -88,7 +86,7 @@ const FichesProjets = () => {
                 }
 
             </Grid>
-        </BonnesPratiquesContext.Provider>
+        </FichesProjetsContext.Provider>
     )
 }
 
