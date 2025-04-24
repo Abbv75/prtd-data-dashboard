@@ -61,6 +61,7 @@ const AddForm = (
 
             toast.success("Form submitted successfully!");
             laodData();
+            setloadingState(null);
             setOpen(false);
         } catch (error) {
             toast.error("Une erreur est survenue. Veuillez reessayer");
