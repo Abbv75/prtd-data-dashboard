@@ -1,4 +1,5 @@
 import BonnesPratiques from "../pages/bonnes-pratiques";
+import FichesProjets from "../pages/fiches-projets";
 import Techniques from "../pages/techniques";
 
 export default [
@@ -11,5 +12,10 @@ export default [
         path: "/bonnes-pratiques",
         title: "Bonnes pratiques",
         component: BonnesPratiques
+    },
+    {
+        path: "/fiches-projets",
+        title: "Fiches projets",
+        component: FichesProjets
     },
 ]
