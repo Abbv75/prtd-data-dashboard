@@ -88,7 +88,7 @@ const AddForm = (
                     )
                     : (
                         <ModalDialog>
-                            <Typography level='h3'>Ajouter une bonnes pratiques</Typography>
+                            <Typography level='h3'>Ajouter une fiche de projet</Typography>
 
                             <Stack
                                 component="form"
@@ -109,15 +109,6 @@ const AddForm = (
                                         placeholder='Saisissez la description'
                                         name='description'
                                     />
-                                </FormControl>
-
-                                <FormControl required>
-                                    <FormLabel>Filière concernée</FormLabel>
-                                    <Select name='filiere' defaultValue={filiereListe[0].idTechniquesCategorie}>
-                                        {filiereListe.map((value, index) => (
-                                            <Option value={value.idTechniquesCategorie}>{value.nomTechniquesCategorie}</Option>
-                                        ))}
-                                    </Select>
                                 </FormControl>
 
                                 <Stack direction={"row"} gap={1} >
@@ -141,6 +132,20 @@ const AddForm = (
                                         sx={{ width: 50, objectFit: "contain" }}
                                     />
                                 </Stack>
+
+                                <FormControl>
+                                    <FormLabel>Fichier PDF</FormLabel>
+                                    <input
+                                        type='file'
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center"
+                                        }}
+                                        name='fichier'
+                                    />
+                                </FormControl>
+
 
                                 <Stack
                                     direction={"row"}
