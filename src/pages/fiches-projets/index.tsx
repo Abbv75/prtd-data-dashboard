@@ -4,14 +4,16 @@ import { Button, Card, Grid, Input, LinearProgress, Stack } from "@mui/joy"
 import BonnesPratiquesCard from "./BonnesPratiquesCard"
 import AddForm from "./AddForm"
 import { useEffect, useState } from "react"
-import { BONNES_PRATIQUES_T, LOADING_STATE_T } from "../../types"
+import { BONNES_PRATIQUES_T, FICHES_PROJETS_T, LOADING_STATE_T } from "../../types"
 import { getAllBonnesPratiques } from "../../functions/bonnesPratiques/getAllBonnesPratiques"
 import { toast } from "react-toastify"
 import { BonnesPratiquesContext } from "../../providers/BonnesPratiquesContext"
+import { getAllFichesProjets } from "../../functions/fichesProjets/getAllFichesProjets"
+import FichesProjetsCard from "./FichesProjetsCard"
 
 const FichesProjets = () => {
     const [isFormOpen, setisFormOpen] = useState(false);
-    const [data, setdata] = useState([] as BONNES_PRATIQUES_T[]);
+    const [data, setdata] = useState([] as FICHES_PROJETS_T[]);
     const [laodingState, setlaodingState] = useState(null as LOADING_STATE_T);
 
     const laodData = async () => {
@@ -20,7 +22,7 @@ const FichesProjets = () => {
             setdata([]);
 
             setlaodingState("En cours de chargement.");
-            const res = await getAllBonnesPratiques();
+            const res = await getAllFichesProjets();
 
             typeof res !== "string" ? setdata(res) : setdata(dataTmp);
             setlaodingState(null);
@@ -79,12 +81,7 @@ const FichesProjets = () => {
                                     md={3}
                                     key={index}
                                 >
-                                    <BonnesPratiquesCard
-                                        titre={value.intitule}
-                                        description={value.description}
-                                        image={value.image}
-                                        id={value.idBonnesPratiques}
-                                    />
+                                    <FichesProjetsCard value={value} />
                                 </Grid>
                             ))
                         )

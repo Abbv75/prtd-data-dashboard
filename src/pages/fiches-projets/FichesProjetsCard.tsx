@@ -1,8 +1,15 @@
 import { CardMedia } from '@mui/material'
 import { CardContent, Typography, Card, Button } from '@mui/joy'
 import { green } from '@mui/material/colors'
+import { FICHES_PROJETS_T } from '../../types'
 
-const Card1 = () => {
+const FichesProjetsCard = (
+    {
+        value
+    }: {
+        value: FICHES_PROJETS_T
+    }
+) => {
     return (
         <Card
             sx={{
@@ -46,4 +53,4 @@ const Card1 = () => {
     )
 }
 
-export default Card1
+export default FichesProjetsCard
