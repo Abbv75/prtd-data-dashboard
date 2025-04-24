@@ -92,7 +92,6 @@ const BonnesPratiquesCard = (
               loading={loadingState === "En cours de chargement."}
               onClick={handleDelete}
             >Supprimer</Button>
-            <Button fullWidth color="neutral">Modifier</Button>
           </ButtonGroup>
         </Collapse>
       </CardContent>
