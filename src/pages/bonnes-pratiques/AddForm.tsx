@@ -1,10 +1,11 @@
 import { Button, FormControl, FormLabel, Input, Modal, ModalDialog, Option, Select, Stack, Textarea, Typography } from '@mui/joy'
 import { LOADING_STATE_T, TECHNIQUE_CATEGORIE_T, USE_STATE_T } from '../../types'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import { CardMedia, CircularProgress } from '@mui/material'
 import { AxiosInstense } from '../../helpers/AxiosInstense'
 import { getTechniquesCategorie } from '../../functions/techniquesCategorie/getTechniquesCategorie'
+import { BonnesPratiquesContext } from '../../providers/BonnesPratiquesContext'
 
 const AddForm = (
     {
@@ -18,6 +19,7 @@ const AddForm = (
     const [loadingState, setloadingState] = useState(null as LOADING_STATE_T);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [filiereListe, setfiliereListe] = useState([] as TECHNIQUE_CATEGORIE_T[]);
+    const { laodData } = useContext(BonnesPratiquesContext);
 
     const loadTechniqueCategorie = async () => {
         try {
@@ -58,6 +60,7 @@ const AddForm = (
             });
 
             toast.success("Form submitted successfully!");
+            laodData();
             setOpen(false);
         } catch (error) {
             toast.error("Une erreur est survenue. Veuillez reessayer");
