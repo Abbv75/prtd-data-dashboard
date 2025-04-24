@@ -78,9 +78,11 @@ const FichesProjetsCard = (
                         borderRadius: 0,
                         "> *:is(button, a)": {
                             color: "white",
+                        },
+                        "> *:is(button, a):hover": {
+                            color: "green",
                         }
                     }}
-                    color='warning'
                 >
                     <Button
                         component="a"
