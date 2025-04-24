@@ -34,3 +34,11 @@ export interface BONNES_PRATIQUES_T {
     image?: string;
     id_filiere: number;
 }
+
+export interface FICHES_PROJETS_T {
+    idFichesProjets: number;
+    intitule: string;
+    description: string;
+    image: string;
+    fichier: number;
+}
