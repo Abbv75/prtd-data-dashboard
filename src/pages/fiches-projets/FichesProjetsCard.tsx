@@ -6,6 +6,8 @@ import { useContext, useState } from 'react'
 import { deleteFichesProjets } from '../../functions/fichesProjets/deleteFichesProjets'
 import { toast } from 'react-toastify'
 import { FichesProjetsContext } from '../../providers/FichesProjetsContext'
+import { faFilePdf, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const FichesProjetsCard = (
     {
@@ -85,18 +87,14 @@ const FichesProjetsCard = (
                         target='_blank'
                         fullWidth
                         href={`${process.env.REACT_APP_PDF_URL}/fiches-projets/${value.fichier}`}
+                        startDecorator={<FontAwesomeIcon icon={faFilePdf} />}
                     >Telecharger</Button>
-
-                    <Button
-                        component="a"
-                        target='_blank'
-                        href={`${process.env.REACT_APP_PDF_URL}/fiches-projets/${value.fichier}`}
-                    >Modifier</Button>
 
                     <Button
                         color="danger"
                         loading={loadingState === "En cours de chargement."}
                         onClick={handleDelete}
+                        endDecorator={<FontAwesomeIcon icon={faTimes} />}
                     >Supprimer</Button>
 
                 </ButtonGroup>
